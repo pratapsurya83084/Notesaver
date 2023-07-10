@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <title>note app</title>
+    <style>
+      body {
+        background-color: rgba(187, 186, 186);
+      }
+      .form-floating {
+        margin-top: 10px;
+      }
+
+      .form-floating2 {
+        margin-top: 50px;
+      }
+
+      /* .form-control{
+    border-radius: 2px solid black;   
+} */
+      .textarea {
+        background-color: beige;
+        margin: 50px;
+        padding: 10px;
+      }
+      #text1 {
+        padding: 20px;
+      }
+      #text2 {
+        padding: 20px;
+      }
+      .block {
+        border: 2px solid rgb(186, 180, 180);
+      }
+      .btn {
+        margin: 10px;
+      }
+      .footer {
+        background-color: rgb(145, 141, 141);
+        height: 140px;
+        width: auto;
+      }
+      .footer h4 {
+        margin-top: 75px;
+      }
+      .last {
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-gray-400 bg-gray-400">
+      <div class="container-fluid">
+        <a class="navbar-brand text-warning" href="#">NOTESaver</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="text collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#genral" id="home"
+                >home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="#business"
+                id="contact"
+                >contact</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                aria-current="page"
+                href="#business"
+                id="about"
+                >about</a
+              >
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="text"
+              id="newsquery"
+              placeholder="Search news"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-warning" id="search" type="button">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="textarea">
+      <h1>WelcomeTo WriteNote.com</h1>
+      <br />
+      <h3>Note app With text Functionality</h3>
+      <br />
+      <div class="block">
+        <!---title input type-->
+        <div class="form-control" id="text1">
+          <h4>Write Your Title Name</h4>
+          <textarea
+            class="form-control"
+            placeholder="Enter your title"
+            id="floatingTextarea1"
+          ></textarea>
+        </div>
+        <!----------------addd your note input type-->
+        <div class="form-floating2" id="text2">
+          <h4>Add your Note</h4>
+          <textarea
+            class="form-control"
+            placeholder="Write your note here......"
+            id="floatingTextarea2"
+            style="height: 100px"
+          ></textarea>
+          <label for="floatingTextarea2"></label>
+        </div>
+
+        <!-- <div class="btn"> -->
+        <button type="text" class="btn btn-warning" id="addBtn">
+          Add Note
+        </button>
+
+        <button type="text" class="btn btn-warning" id="Lcase">
+          Lowercase
+        </button>
+        <button type="text" class="btn btn-warning" id="Ucase">
+          Uppercase
+        </button>
+
+        <button type="text" class="btn btn-warning" id="charcount">
+          character Count
+        </button>
+        <button type="text" class="btn btn-warning" id="savednote">
+          see saved notes
+        </button>
+
+        <button onclick="delet()" class="btn btn-warning" id="delete">
+          delete note
+        </button>
+        <!--savednote-->
+
+        <div id="savenote"></div>
+
+        <h2 class="px-2">
+          All character count:
+          <p id="countshow"></p>
+        </h2>
+        <!-- </div> -->
+      </div>
+      <hr />
+      <h1 class="">Your Notes</h1>
+      <hr />
+      Nothing to show! Use "Add a Note" section above to add notes.
+    </div>
+    <footer>
+      <div class="footer text-center">
+        <h4 class="py-5">
+          Copyright ©2022 All rights reserved by WriteNote.com
+        </h4>
+      </div>
+    </footer>
+    <div class="last"></div>
+    <!----javascript code below-->
+    <script>
+      //add note
+      let add = document.getElementById("addBtn");
+      add.addEventListener("click", function (e) {
+        let a = document.getElementById("floatingTextarea1");
+
+        let b = document.getElementById("floatingTextarea2");
+        localStorage.setItem(a.value, b.value); //set value
+        let item = "";
+        if (b.value == "") {
+          alert("please add your notes");
+        } else {
+          alert("saved your notes");
+        }
+      });
+      ///saved notes
+      // let saved=document.getElementById("savednote");
+      // saved.addEventListener('click',function (e){
+      //     let a=document.getElementById("floatingTextarea1");
+      //     let b=document.getElementById("floatingTextarea2");
+      //    let c= localStorage.getItem(a.value,b.value);
+      //     document.getElementById("savednote").innerHTML=c;
+
+      // });
+      function save() {
+        let b = document.getElementById("savenote");
+        b.innerHTML = "";
+
+        for (let i = 0; i < localStorage.length; i++) {
+          let key = localStorage.key(i);
+          let value = localStorage.getItem(key);
+
+          let p = document.createElement("p");
+          p.textContent = key + ": " + value;
+          savenote.appendChild(p);
+        }
+      }
+      let saveButton = document.getElementById("savednote");
+      saveButton.addEventListener("click", function () {
+        save();
+      });
+      save();
+
+      //delete note
+      function delet() {
+        let b = document.getElementById("savenote");
+        b.innerHTML = "";
+
+        for (let i = 0; i < localStorage.length; i++) {
+          let key = localStorage.key(i);
+          let value = localStorage.removeItem(key);
+
+          let p = document.createElement("p");
+          p.textContent = key + ": " + value;
+          savenote.appendChild(p);
+        }
+      }
+      let deletebtn = document.getElementById("delete");
+      deletebtn.addEventListener("click", function () {
+        delet();
+      });
+      delet();
+
+      //lowercase to  Uppercase converter  function
+      let Ucase = document.getElementById("Ucase"); //btn id fetch
+      Ucase.addEventListener("click", function (e) {
+        //console.log("Uppercase function call")
+        let Uc = document
+          .getElementById("floatingTextarea2")
+          .value.toUpperCase(); //textarea id fetch
+        //console.log(Uc)
+        floatingTextarea2.value = Uc;
+      });
+
+      //uppercase to lowercase converter function
+      let lcase = document.getElementById("Lcase"); //btn id fetch
+      lcase.addEventListener("click", function (e) {
+        //console.log("Uppercase function call")
+        let Lc = document
+          .getElementById("floatingTextarea2")
+          .value.toLowerCase(); //textarea id fetch
+        //console.log(Uc)
+        floatingTextarea2.value = Lc;
+      });
+
+      //charcount..
+      let text = document.getElementById("charcount");
+      text.addEventListener("click", function (e) {
+        let character =
+          document.getElementById("floatingTextarea2").value.length;
+        document.getElementById("countshow").innerHTML = character;
+      });
+      // function charcount(){
+      // let a=document.getElementById("floatingTextarea2");
+      // a.innerHTML=a.length;
+
+      // }
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
